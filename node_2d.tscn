@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://w6h1q2v62e0n"]
+
+[ext_resource type="Texture2D" uid="uid://bci0n833hvvgp" path="res://Images/Decent.png" id="1_6kodn"]
+[ext_resource type="Texture2D" uid="uid://c3c8v4v5j6tlb" path="res://Images/Sunny.png" id="1_hr07h"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_m3nui"]
+[ext_resource type="Texture2D" uid="uid://ca4jlno1xcibr" path="res://Images/Night.png" id="3_spjdc"]
+[ext_resource type="Texture2D" uid="uid://bx4cdty6svffa" path="res://Images/Rainy_Day.png" id="4_6vr2r"]
+[ext_resource type="Texture2D" uid="uid://ydww2wfrgyrc" path="res://Images/Moon.png" id="4_utuxt"]
+[ext_resource type="Texture2D" uid="uid://bsrap4encjtya" path="res://Images/Cloudy_Day.png" id="5_g8naq"]
+[ext_resource type="Texture2D" uid="uid://drei0j5aa6ye3" path="res://Images/Rainy_Night.png" id="8_eqdcn"]
+[ext_resource type="Texture2D" uid="uid://o3j5nmneavh" path="res://Images/Clody_Night.png" id="9_rwcqa"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_m3nui")
+
+[node name="Network" type="Node" parent="."]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Network"]
+process_mode = 1
+download_chunk_size = 4096
+use_threads = true
+accept_gzip = false
+
+[node name="Day" type="Node2D" parent="."]
+visible = false
+
+[node name="Clear" type="Node2D" parent="Day"]
+visible = false
+
+[node name="Decent" type="Sprite2D" parent="Day/Clear"]
+position = Vector2(640, 360)
+texture = ExtResource("1_6kodn")
+
+[node name="Sun" type="Sprite2D" parent="Day/Clear"]
+position = Vector2(640, 360)
+texture = ExtResource("1_hr07h")
+
+[node name="Rainy" type="Node2D" parent="Day"]
+visible = false
+
+[node name="RainyDay" type="Sprite2D" parent="Day/Rainy"]
+position = Vector2(640, 360)
+texture = ExtResource("4_6vr2r")
+
+[node name="Cloudy" type="Node2D" parent="Day"]
+visible = false
+
+[node name="CloudyDay" type="Sprite2D" parent="Day/Cloudy"]
+position = Vector2(640, 360)
+texture = ExtResource("5_g8naq")
+
+[node name="Night" type="Node2D" parent="."]
+visible = false
+
+[node name="Clear" type="Node2D" parent="Night"]
+visible = false
+
+[node name="Night" type="Sprite2D" parent="Night/Clear"]
+position = Vector2(640, 360)
+texture = ExtResource("3_spjdc")
+
+[node name="Moon" type="Sprite2D" parent="Night/Clear"]
+position = Vector2(640, 360)
+texture = ExtResource("4_utuxt")
+
+[node name="Rainy" type="Node2D" parent="Night"]
+visible = false
+
+[node name="RainyNight" type="Sprite2D" parent="Night/Rainy"]
+position = Vector2(640, 360)
+texture = ExtResource("8_eqdcn")
+
+[node name="Cloudy" type="Node2D" parent="Night"]
+visible = false
+
+[node name="ClodyNight" type="Sprite2D" parent="Night/Cloudy"]
+position = Vector2(640, 360)
+texture = ExtResource("9_rwcqa")
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="StareaVremii" type="Label" parent="Text"]
+offset_left = 344.0
+offset_top = 256.0
+offset_right = 936.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Se incarca prognoza meteo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bacau" type="Label" parent="Text"]
+offset_left = 544.0
+offset_top = 152.0
+offset_right = 736.0
+offset_bottom = 238.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Bacau"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Temperatura" type="Label" parent="Text"]
+offset_left = 560.0
+offset_top = 336.0
+offset_right = 722.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+vertical_alignment = 1
