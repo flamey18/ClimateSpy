@@ -22,8 +22,10 @@ use_threads = true
 accept_gzip = false
 
 [node name="Day" type="Node2D" parent="."]
+visible = false
 
 [node name="Clear" type="Node2D" parent="Day"]
+visible = false
 
 [node name="Decent" type="Sprite2D" parent="Day/Clear"]
 position = Vector2(640, 360)
