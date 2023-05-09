@@ -23,3 +23,7 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="Climate Spy"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
