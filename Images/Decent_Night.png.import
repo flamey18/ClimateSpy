@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxg3d7ljbomfs"
-path="res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"
+uid="uid://duee14k1tacrb"
+path="res://.godot/imported/Decent_Night.png-b687c6019a9dc6fed46e55c093d78e83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sunny.png"
-dest_files=["res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"]
+source_file="res://Images/Decent_Night.png"
+dest_files=["res://.godot/imported/Decent_Night.png-b687c6019a9dc6fed46e55c093d78e83.ctex"]
 
 [params]
 

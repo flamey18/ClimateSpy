@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxg3d7ljbomfs"
-path="res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"
+uid="uid://nk4nbwaem60d"
+path="res://.godot/imported/Thunderstorm.png-839f28e1530c215f4694d3ff9a6488ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sunny.png"
-dest_files=["res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"]
+source_file="res://Images/Thunderstorm.png"
+dest_files=["res://.godot/imported/Thunderstorm.png-839f28e1530c215f4694d3ff9a6488ca.ctex"]
 
 [params]
 

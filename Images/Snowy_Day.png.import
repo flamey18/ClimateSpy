@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxg3d7ljbomfs"
-path="res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"
+uid="uid://dxy0m38o6tqaf"
+path="res://.godot/imported/Snowy_Day.png-f2aaa83270e11e540f166b19c9ade7c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sunny.png"
-dest_files=["res://.godot/imported/Sunny.png-f798472631fe54b1117779bef0f3a9d7.ctex"]
+source_file="res://Images/Snowy_Day.png"
+dest_files=["res://.godot/imported/Snowy_Day.png-f2aaa83270e11e540f166b19c9ade7c2.ctex"]
 
 [params]
 
