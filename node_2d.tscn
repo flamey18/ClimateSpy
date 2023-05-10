@@ -1,18 +1,18 @@
 [gd_scene load_steps=14 format=3 uid="uid://w6h1q2v62e0n"]
 
-[ext_resource type="Texture2D" uid="uid://cxg3d7ljbomfs" path="res://Images/Sunny.png" id="1_hr07h"]
+[ext_resource type="Texture2D" uid="uid://r3cjyqnk1ksf" path="res://Images/Sunny.png" id="1_hr07h"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_m3nui"]
-[ext_resource type="Texture2D" uid="uid://c3xp0fawycwry" path="res://Images/Decent_Day.png" id="2_dbl5h"]
-[ext_resource type="Texture2D" uid="uid://dlxa2cosy7jup" path="res://Images/Night.png" id="3_spjdc"]
-[ext_resource type="Texture2D" uid="uid://bidrstj471cbd" path="res://Images/Rainy_Day.png" id="4_6vr2r"]
-[ext_resource type="Texture2D" uid="uid://obhurcorj1d7" path="res://Images/Moon.png" id="4_utuxt"]
-[ext_resource type="Texture2D" uid="uid://bsrd1imeu73h4" path="res://Images/Cloudy_Day.png" id="5_g8naq"]
-[ext_resource type="Texture2D" uid="uid://bnmnj16x7si0y" path="res://Images/ThunderstormDay.png" id="6_0wro6"]
-[ext_resource type="Texture2D" uid="uid://dxy0m38o6tqaf" path="res://Images/Snowy_Day.png" id="6_ddit1"]
-[ext_resource type="Texture2D" uid="uid://bbnds87nncjhy" path="res://Images/Rainy_Night.png" id="8_eqdcn"]
-[ext_resource type="Texture2D" uid="uid://b7b3pcjcjv0sp" path="res://Images/Clody_Night.png" id="9_rwcqa"]
-[ext_resource type="Texture2D" uid="uid://tajrod4de7jk" path="res://Images/Stormy_Night.png" id="12_ekt7o"]
-[ext_resource type="Texture2D" uid="uid://cls33dyx235h8" path="res://Images/Snowy_Night.png" id="12_fcb3o"]
+[ext_resource type="Texture2D" uid="uid://bugmsyne1jm3q" path="res://Images/Decent_Day.png" id="2_dbl5h"]
+[ext_resource type="Texture2D" uid="uid://blxmlm0wsgjus" path="res://Images/Rainy_Day.png" id="4_6vr2r"]
+[ext_resource type="Texture2D" uid="uid://c1vxot6phmsyf" path="res://Images/Moon.png" id="4_utuxt"]
+[ext_resource type="Texture2D" uid="uid://c00sw87q7r487" path="res://Images/Cloudy_Day.png" id="5_g8naq"]
+[ext_resource type="Texture2D" uid="uid://y4t8o7fqviqg" path="res://Images/Snowy_Day.png" id="6_ddit1"]
+[ext_resource type="Texture2D" uid="uid://l2s3l84l4vwe" path="res://Images/Stormy_Day.png" id="7_38rdm"]
+[ext_resource type="Texture2D" uid="uid://c1b0rftrcy8v" path="res://Images/Decent_Night.png" id="7_sr4qm"]
+[ext_resource type="Texture2D" uid="uid://r1to7vh8pdp8" path="res://Images/Rainy_Night.png" id="8_eqdcn"]
+[ext_resource type="Texture2D" uid="uid://d4hh21em7ff2o" path="res://Images/Clody_Night.png" id="9_rwcqa"]
+[ext_resource type="Texture2D" uid="uid://1lio3y1btbq0" path="res://Images/Stormy_Night.png" id="12_ekt7o"]
+[ext_resource type="Texture2D" uid="uid://rmy1kxowqioh" path="res://Images/Snowy_Night.png" id="12_fcb3o"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_m3nui")
@@ -64,7 +64,7 @@ visible = false
 
 [node name="StormyDay" type="Sprite2D" parent="Day/Thunderstorm"]
 position = Vector2(640, 360)
-texture = ExtResource("6_0wro6")
+texture = ExtResource("7_38rdm")
 
 [node name="Night" type="Node2D" parent="."]
 
@@ -73,7 +73,7 @@ visible = false
 
 [node name="Night" type="Sprite2D" parent="Night/Clear"]
 position = Vector2(640, 360)
-texture = ExtResource("3_spjdc")
+texture = ExtResource("7_sr4qm")
 
 [node name="Moon" type="Sprite2D" parent="Night/Clear"]
 position = Vector2(640, 360)
