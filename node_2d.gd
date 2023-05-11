@@ -15,6 +15,10 @@ func _ready():
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(0,0,0))
+		$Inchidere.set("theme_override_colors/font_color",Color(0,0,0))
+		$Inchidere.set("theme_override_colors/font_hover_color",Color(255,255,255))
+		$Reincarcare.set("theme_override_colors/font_color",Color(0,0,0))
+		$Reincarcare.set("theme_override_colors/font_hover_color",Color(255,255,255))
 		match (vreme):
 			0:
 				$Day/Clear.show()
@@ -30,6 +34,10 @@ func _ready():
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(255,255,255))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(255,255,255))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(255,255,255))
+		$Inchidere.set("theme_override_colors/font_color",Color(255,255,255))
+		$Inchidere.set("theme_override_colors/font_hover_color",Color(0,0,0))
+		$Reincarcare.set("theme_override_colors/font_color",Color(255,255,255))
+		$Reincarcare.set("theme_override_colors/font_hover_color",Color(0,0,0))
 		match (vreme):
 			0:
 				$Night/Clear.show()
@@ -75,3 +83,11 @@ func codul_vremii():
 			95,96,97:
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
+
+
+func _on_inchidere_pressed():
+	get_tree().quit()
+
+
+func _on_reincarcare_pressed():
+	get_tree().reload_current_scene()

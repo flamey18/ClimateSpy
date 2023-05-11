@@ -19,11 +19,20 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 
 [dotnet]
 
 project/assembly_name="Climate Spy"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.152941, 1, 1, 1)

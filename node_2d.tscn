@@ -148,3 +148,25 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 70
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Inchidere" type="Button" parent="."]
+offset_left = 1040.0
+offset_right = 1280.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Inchidere"
+
+[node name="Reincarcare" type="Button" parent="."]
+offset_left = 1040.0
+offset_top = 100.0
+offset_right = 1281.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Reimprospatare"
+
+[connection signal="pressed" from="Inchidere" to="." method="_on_inchidere_pressed"]
+[connection signal="pressed" from="Reincarcare" to="." method="_on_reincarcare_pressed"]
