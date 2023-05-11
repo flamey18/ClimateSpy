@@ -1,15 +1,16 @@
 extends Node2D
-var meteo
+
+var meteo={"current_weather":{"is_day":1,"temperature":-99,"weathercode":0}}
 var temp="°C"
 var cod
 var des
 var vreme
 var a
+
 func _ready():
-	#Cerere de tip HTTP catre Open-Meteo pentru a obtine prognoza meteo
 	$Network/HTTPRequest.request_completed.connect(_on_request_completed)
 	$Network/HTTPRequest.request("https://api.open-meteo.com/v1/forecast?latitude=46.57&longitude=26.91&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto")
-	await get_tree().create_timer(4).timeout
+	await $Network/HTTPRequest.request_completed
 	codul_vremii()
 	if(meteo["current_weather"]["is_day"]==1):
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
@@ -50,14 +51,10 @@ func _ready():
 			4:
 				$Night/Thunderstorm.show()
 	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+temp
-#Cand cererea HTTP este completa,copiaza toate datele primite in variabila meteo
-#Variabila meteo este un dictionar,un fel de vector in C++
-#Indexul este reprezentat de un cuvant,nu de un numar
+
 func _on_request_completed(result, response_code, headers, body):
 	meteo = JSON.parse_string(body.get_string_from_utf8())
-#Fiecare tip de vreme are codul sau specific
-#Aceasta functie va decoda codul vremii
-#0-senin 1-innorat 2-plaoie 3-ninsoare 4-furtuna
+	
 func codul_vremii():
 	if(meteo):
 		cod=int(meteo["current_weather"]["weathercode"])
@@ -84,10 +81,8 @@ func codul_vremii():
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
 
-
 func _on_inchidere_pressed():
 	get_tree().quit()
-
-
+	
 func _on_reincarcare_pressed():
 	get_tree().reload_current_scene()
