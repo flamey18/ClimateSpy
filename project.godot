@@ -15,10 +15,14 @@ run/main_scene="res://node_2d.tscn"
 run/disable_stdout=true
 run/disable_stderr=true
 config/features=PackedStringArray("4.0", "Forward Plus")
-run/max_fps=60
+run/max_fps=10
 run/low_processor_mode=true
 boot_splash/bg_color=Color(0.152941, 1, 1, 1)
 config/icon="res://icon.svg"
+
+[compression]
+
+formats/zstd/long_distance_matching=true
 
 [display]
 
@@ -36,9 +40,20 @@ project/assembly_name="Climate Spy"
 
 pointing/emulate_touch_from_mouse=true
 
+[internationalization]
+
+rendering/text_driver="ICU / HarfBuzz / Graphite (Built-in)"
+
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+shader_compiler/shader_cache/strip_debug=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+textures/decals/filter=0
+textures/light_projectors/filter=0
 environment/defaults/default_clear_color=Color(0.152941, 1, 1, 1)
