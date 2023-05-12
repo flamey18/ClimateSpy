@@ -12,14 +12,19 @@ config_version=5
 
 config/name="Climate Spy"
 run/main_scene="res://node_2d.tscn"
+run/disable_stdout=true
+run/disable_stderr=true
 config/features=PackedStringArray("4.0", "Forward Plus")
+run/max_fps=60
+run/low_processor_mode=true
+boot_splash/bg_color=Color(0.152941, 1, 1, 1)
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/borderless=true
+window/energy_saving/keep_screen_on=false
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
@@ -33,6 +38,7 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.152941, 1, 1, 1)

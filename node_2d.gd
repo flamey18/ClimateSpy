@@ -81,8 +81,8 @@ func codul_vremii():
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
 
-func _on_inchidere_pressed():
-	get_tree().quit()
+#func _on_inchidere_pressed():
+#	get_tree().quit()
 	
 func _on_reincarcare_pressed():
 	get_tree().reload_current_scene()
