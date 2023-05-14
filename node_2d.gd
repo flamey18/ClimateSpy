@@ -1,12 +1,9 @@
 extends Node2D
-
-var meteo={"current_weather":{"is_day":1,"temperature":-99,"weathercode":0}}
-var temp="°C"
+#Initializarea valorilor
+var meteo
 var cod
 var des
 var vreme
-var a
-
 func _ready():
 	$Network/HTTPRequest.request_completed.connect(_on_request_completed)
 	$Network/HTTPRequest.request("https://api.open-meteo.com/v1/forecast?latitude=46.57&longitude=26.91&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto")
@@ -16,10 +13,7 @@ func _ready():
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(0,0,0))
-		$Inchidere.set("theme_override_colors/font_color",Color(0,0,0))
-		$Inchidere.set("theme_override_colors/font_hover_color",Color(255,255,255))
-		$Reincarcare.set("theme_override_colors/font_color",Color(0,0,0))
-		$Reincarcare.set("theme_override_colors/font_hover_color",Color(255,255,255))
+		$Reincarcare.icon=ResourceLoader.load("res://Images/darkrefresh.png")
 		match (vreme):
 			0:
 				$Day/Clear.show()
@@ -31,14 +25,12 @@ func _ready():
 				$Day/Snowy.show()
 			4:
 				$Day/Thunderstorm.show()
+		$Reincarcare.show()
 	else:
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(255,255,255))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(255,255,255))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(255,255,255))
-		$Inchidere.set("theme_override_colors/font_color",Color(255,255,255))
-		$Inchidere.set("theme_override_colors/font_hover_color",Color(0,0,0))
-		$Reincarcare.set("theme_override_colors/font_color",Color(255,255,255))
-		$Reincarcare.set("theme_override_colors/font_hover_color",Color(0,0,0))
+		$Reincarcare.icon=ResourceLoader.load("res://Images/lightrefresh.png")
 		match (vreme):
 			0:
 				$Night/Clear.show()
@@ -50,11 +42,12 @@ func _ready():
 				$Night/Snowy.show()
 			4:
 				$Night/Thunderstorm.show()
-	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+temp
+		$Reincarcare.show()
+	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+"°C"
 
 func _on_request_completed(result, response_code, headers, body):
 	meteo = JSON.parse_string(body.get_string_from_utf8())
-	
+
 func codul_vremii():
 	if(meteo):
 		cod=int(meteo["current_weather"]["weathercode"])
@@ -81,8 +74,5 @@ func codul_vremii():
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
 
-#func _on_inchidere_pressed():
-#	get_tree().quit()
-	
 func _on_reincarcare_pressed():
 	get_tree().reload_current_scene()

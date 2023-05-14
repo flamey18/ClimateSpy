@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://w6h1q2v62e0n"]
+[gd_scene load_steps=15 format=3 uid="uid://w6h1q2v62e0n"]
 
 [ext_resource type="Texture2D" uid="uid://r3cjyqnk1ksf" path="res://Images/Sunny.png" id="1_hr07h"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_m3nui"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d4hh21em7ff2o" path="res://Images/Clody_Night.png" id="9_rwcqa"]
 [ext_resource type="Texture2D" uid="uid://1lio3y1btbq0" path="res://Images/Stormy_Night.png" id="12_ekt7o"]
 [ext_resource type="Texture2D" uid="uid://rmy1kxowqioh" path="res://Images/Snowy_Night.png" id="12_fcb3o"]
+[ext_resource type="Texture2D" uid="uid://dt3lywx1qpv2e" path="res://Images/darkrefresh.png" id="14_1vtfb"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_m3nui")
@@ -149,24 +150,16 @@ theme_override_font_sizes/font_size = 70
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Inchidere" type="Button" parent="."]
-visible = false
-offset_left = 1040.0
-offset_right = 1280.0
-offset_bottom = 77.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 50
-text = "Inchidere"
-
 [node name="Reincarcare" type="Button" parent="."]
-offset_left = 1039.0
-offset_right = 1280.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "Reimprospatare"
+visible = false
+z_index = 1
+offset_left = 1216.0
+offset_right = 1464.0
+offset_bottom = 258.0
+scale = Vector2(0.261631, 0.248535)
+icon = ExtResource("14_1vtfb")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[connection signal="pressed" from="Inchidere" to="." method="_on_inchidere_pressed"]
 [connection signal="pressed" from="Reincarcare" to="." method="_on_reincarcare_pressed"]
