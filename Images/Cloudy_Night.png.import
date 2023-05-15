@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4hh21em7ff2o"
-path="res://.godot/imported/Clody_Night.png-df40cfa0ec6a84b31a70da78b7bbb944.ctex"
+path="res://.godot/imported/Cloudy_Night.png-9f1c5dc444b6370da889413dd260d688.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Clody_Night.png"
-dest_files=["res://.godot/imported/Clody_Night.png-df40cfa0ec6a84b31a70da78b7bbb944.ctex"]
+source_file="res://Images/Cloudy_Night.png"
+dest_files=["res://.godot/imported/Cloudy_Night.png-9f1c5dc444b6370da889413dd260d688.ctex"]
 
 [params]
 

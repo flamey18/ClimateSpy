@@ -1,5 +1,5 @@
 extends Node2D
-#Initializarea valorilor
+#Initializarea variabilelor
 var meteo
 var cod
 var des
@@ -16,15 +16,16 @@ func _ready():
 		$Reincarcare.icon=ResourceLoader.load("res://Images/darkrefresh.png")
 		match (vreme):
 			0:
-				$Day/Clear.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Day.png")
+				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Sunny.png")
 			1:
-				$Day/Cloudy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Cloudy_Day.png")
 			2:
-				$Day/Rainy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Rainy_Day.png")
 			3:
-				$Day/Snowy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Snowy_Day.png")
 			4:
-				$Day/Thunderstorm.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Stormy_Day.png")
 		$Reincarcare.show()
 	else:
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(255,255,255))
@@ -33,15 +34,16 @@ func _ready():
 		$Reincarcare.icon=ResourceLoader.load("res://Images/lightrefresh.png")
 		match (vreme):
 			0:
-				$Night/Clear.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Night.png")
+				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Moon.png")
 			1:
-				$Night/Cloudy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Cloudy_Night.png")
 			2:
-				$Night/Rainy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Rainy_Night.png")
 			3:
-				$Night/Snowy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Snowy_Night.png")
 			4:
-				$Night/Thunderstorm.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Stormy_Night.png")
 		$Reincarcare.show()
 	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+"°C"
 

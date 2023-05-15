@@ -1,22 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://w6h1q2v62e0n"]
+[gd_scene load_steps=4 format=3 uid="uid://w6h1q2v62e0n"]
 
-[ext_resource type="Texture2D" uid="uid://r3cjyqnk1ksf" path="res://Images/Sunny.png" id="1_hr07h"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_m3nui"]
-[ext_resource type="Texture2D" uid="uid://bugmsyne1jm3q" path="res://Images/Decent_Day.png" id="2_dbl5h"]
-[ext_resource type="Texture2D" uid="uid://blxmlm0wsgjus" path="res://Images/Rainy_Day.png" id="4_6vr2r"]
-[ext_resource type="Texture2D" uid="uid://c1vxot6phmsyf" path="res://Images/Moon.png" id="4_utuxt"]
-[ext_resource type="Texture2D" uid="uid://c00sw87q7r487" path="res://Images/Cloudy_Day.png" id="5_g8naq"]
-[ext_resource type="Texture2D" uid="uid://y4t8o7fqviqg" path="res://Images/Snowy_Day.png" id="6_ddit1"]
-[ext_resource type="Texture2D" uid="uid://l2s3l84l4vwe" path="res://Images/Stormy_Day.png" id="7_38rdm"]
-[ext_resource type="Texture2D" uid="uid://c1b0rftrcy8v" path="res://Images/Decent_Night.png" id="7_sr4qm"]
-[ext_resource type="Texture2D" uid="uid://r1to7vh8pdp8" path="res://Images/Rainy_Night.png" id="8_eqdcn"]
-[ext_resource type="Texture2D" uid="uid://d4hh21em7ff2o" path="res://Images/Clody_Night.png" id="9_rwcqa"]
-[ext_resource type="Texture2D" uid="uid://1lio3y1btbq0" path="res://Images/Stormy_Night.png" id="12_ekt7o"]
-[ext_resource type="Texture2D" uid="uid://rmy1kxowqioh" path="res://Images/Snowy_Night.png" id="12_fcb3o"]
 [ext_resource type="Texture2D" uid="uid://dt3lywx1qpv2e" path="res://Images/darkrefresh.png" id="14_1vtfb"]
+
+[sub_resource type="GDScript" id="GDScript_xqmds"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_m3nui")
+
+[node name="Afisare" type="Node2D" parent="."]
+script = SubResource("GDScript_xqmds")
+
+[node name="Fundal" type="Sprite2D" parent="Afisare"]
+position = Vector2(640, 360)
+
+[node name="luminaSAUintuneric" type="Sprite2D" parent="Afisare"]
+position = Vector2(640, 360)
 
 [node name="Network" type="Node" parent="."]
 
@@ -25,88 +24,6 @@ process_mode = 1
 download_chunk_size = 4096
 use_threads = true
 accept_gzip = false
-
-[node name="Day" type="Node2D" parent="."]
-
-[node name="Clear" type="Node2D" parent="Day"]
-visible = false
-
-[node name="Decent" type="Sprite2D" parent="Day/Clear"]
-position = Vector2(640, 360)
-texture = ExtResource("2_dbl5h")
-
-[node name="Sun" type="Sprite2D" parent="Day/Clear"]
-position = Vector2(640, 360)
-texture = ExtResource("1_hr07h")
-
-[node name="Rainy" type="Node2D" parent="Day"]
-visible = false
-
-[node name="RainyDay" type="Sprite2D" parent="Day/Rainy"]
-position = Vector2(640, 360)
-texture = ExtResource("4_6vr2r")
-
-[node name="Cloudy" type="Node2D" parent="Day"]
-visible = false
-
-[node name="CloudyDay" type="Sprite2D" parent="Day/Cloudy"]
-position = Vector2(640, 360)
-texture = ExtResource("5_g8naq")
-
-[node name="Snowy" type="Node2D" parent="Day"]
-visible = false
-
-[node name="SnowyDay" type="Sprite2D" parent="Day/Snowy"]
-position = Vector2(640, 360)
-texture = ExtResource("6_ddit1")
-
-[node name="Thunderstorm" type="Node2D" parent="Day"]
-visible = false
-
-[node name="StormyDay" type="Sprite2D" parent="Day/Thunderstorm"]
-position = Vector2(640, 360)
-texture = ExtResource("7_38rdm")
-
-[node name="Night" type="Node2D" parent="."]
-
-[node name="Clear" type="Node2D" parent="Night"]
-visible = false
-
-[node name="Night" type="Sprite2D" parent="Night/Clear"]
-position = Vector2(640, 360)
-texture = ExtResource("7_sr4qm")
-
-[node name="Moon" type="Sprite2D" parent="Night/Clear"]
-position = Vector2(640, 360)
-texture = ExtResource("4_utuxt")
-
-[node name="Rainy" type="Node2D" parent="Night"]
-visible = false
-
-[node name="RainyNight" type="Sprite2D" parent="Night/Rainy"]
-position = Vector2(640, 360)
-texture = ExtResource("8_eqdcn")
-
-[node name="Cloudy" type="Node2D" parent="Night"]
-visible = false
-
-[node name="ClodyNight" type="Sprite2D" parent="Night/Cloudy"]
-position = Vector2(640, 360)
-texture = ExtResource("9_rwcqa")
-
-[node name="Snowy" type="Node2D" parent="Night"]
-visible = false
-
-[node name="SnowyNight" type="Sprite2D" parent="Night/Snowy"]
-position = Vector2(640, 360)
-texture = ExtResource("12_fcb3o")
-
-[node name="Thunderstorm" type="Node2D" parent="Night"]
-visible = false
-
-[node name="StormyNight" type="Sprite2D" parent="Night/Thunderstorm"]
-position = Vector2(640, 360)
-texture = ExtResource("12_ekt7o")
 
 [node name="Text" type="Node2D" parent="."]
 position = Vector2(0, 100)
