@@ -3,25 +3,32 @@ extends Node2D
 var meteo
 var cod
 var vreme
+#Implicit va arata vremea in judetul Bacau
 var long="26.916025"
 var lat="46.568825"
 var url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
 #Rulare cand programul este incarcat
-func _ready():
+func cerere():
 	#Cerere HTTP catre Open Meteo pentru a obtine prognoza meteo
+	#Descarca datele in variabila meteo
 	$Network/HTTPRequest.request_completed.connect(_on_request_completed)
 	$Network/HTTPRequest.request(url)
 	await $Network/HTTPRequest.request_completed
+
+func _ready():
+	cerere()
+	await $Network/HTTPRequest.request_completed
 	codul_vremii()
-	#Verifica daca este zi sau noapte
-	#Schimba fundalul si culoarea textului in functie de codul vremii si ora
+	fundal()
+#Verifica daca este zi sau noapte
+#Schimba fundalul si culoarea textului in functie de codul vremii si ora
+func fundal():
 	if(meteo["current_weather"]["is_day"]==1):
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(0,0,0))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/darkrefresh.png")
 		match (vreme):
-			#Zi
 			0:
 				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Day.png")
 				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Sunny.png")
@@ -40,7 +47,6 @@ func _ready():
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(255,255,255))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/lightrefresh.png")
 		match (vreme):
-			#Noapte
 			0:
 				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Night.png")
 				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Moon.png")
@@ -55,7 +61,7 @@ func _ready():
 		$Reincarcare.show()
 	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+"°C"
 
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(_result, _response_code, _headers, body):
 	meteo = JSON.parse_string(body.get_string_from_utf8())
 
 func codul_vremii():
@@ -64,7 +70,7 @@ func codul_vremii():
 		cod=int(meteo["current_weather"]["weathercode"])
 		match (cod):
 			0,1,2,3:
-				$Text/StareaVremii.text="In principal senin"
+				$Text/StareaVremii.text="Senin"
 				vreme=0
 			45,48:
 				$Text/StareaVremii.text="Ceata"
@@ -84,3 +90,22 @@ func codul_vremii():
 			95,96,97:
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
+
+#Schimbare locatie pentru care sa afiseze vremea curenta
+func _on_lat_text_submitted(_test):
+	lat=$Lat.text
+	url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
+	cerere()
+	await $Network/HTTPRequest.request_completed
+	codul_vremii()
+	fundal()
+
+#Schimbare coordonate
+func _on_lon_text_submitted(_test):
+	long=$Lon.text
+	url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
+	
+	cerere()
+	await $Network/HTTPRequest.request_completed
+	codul_vremii()
+	fundal()
