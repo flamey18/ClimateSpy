@@ -6,31 +6,35 @@
 
 [sub_resource type="GDScript" id="GDScript_xqmds"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node" type="Node"]
+metadata/lat = "46.568825"
+metadata/long = "26.916025"
+
+[node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_m3nui")
 
-[node name="Afisare" type="Node2D" parent="."]
+[node name="Afisare" type="Node2D" parent="Node2D"]
 script = SubResource("GDScript_xqmds")
 
-[node name="Fundal" type="Sprite2D" parent="Afisare"]
+[node name="Fundal" type="Sprite2D" parent="Node2D/Afisare"]
 position = Vector2(640, 360)
 
-[node name="luminaSAUintuneric" type="Sprite2D" parent="Afisare"]
+[node name="luminaSAUintuneric" type="Sprite2D" parent="Node2D/Afisare"]
 position = Vector2(640, 360)
 
-[node name="Network" type="Node" parent="."]
+[node name="Network" type="Node" parent="Node2D"]
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Network"]
+[node name="HTTPRequest" type="HTTPRequest" parent="Node2D/Network"]
 process_mode = 1
 download_chunk_size = 4096
 use_threads = true
 accept_gzip = false
 
-[node name="Text" type="Node2D" parent="."]
+[node name="Text" type="Node2D" parent="Node2D"]
 position = Vector2(0, 100)
 metadata/_edit_group_ = true
 
-[node name="StareaVremii" type="Label" parent="Text"]
+[node name="StareaVremii" type="Label" parent="Node2D/Text"]
 offset_left = 344.0
 offset_top = 256.0
 offset_right = 936.0
@@ -43,21 +47,7 @@ text = "Se incarca prognoza meteo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bacau" type="Label" parent="Text"]
-visible = false
-offset_left = 544.0
-offset_top = 152.0
-offset_right = 736.0
-offset_bottom = 238.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Bacau"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Temperatura" type="Label" parent="Text"]
+[node name="Temperatura" type="Label" parent="Node2D/Text"]
 offset_left = 528.0
 offset_top = 340.0
 offset_right = 752.0
@@ -69,7 +59,7 @@ theme_override_font_sizes/font_size = 70
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Reincarcare" type="Button" parent="."]
+[node name="Reincarcare" type="Button" parent="Node2D"]
 z_index = 1
 offset_left = 1216.0
 offset_right = 1464.0
@@ -81,7 +71,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_6jd54")
 
-[node name="Lat" type="LineEdit" parent="."]
+[node name="Lat" type="LineEdit" parent="Node2D"]
 offset_left = 1152.0
 offset_top = 80.0
 offset_right = 1283.0
@@ -89,7 +79,7 @@ offset_bottom = 128.0
 placeholder_text = "Latitudine"
 alignment = 1
 
-[node name="Lon" type="LineEdit" parent="."]
+[node name="Lon" type="LineEdit" parent="Node2D"]
 offset_left = 1152.0
 offset_top = 144.0
 offset_right = 1283.0
@@ -97,6 +87,6 @@ offset_bottom = 192.0
 placeholder_text = "Longitudine"
 alignment = 1
 
-[connection signal="pressed" from="Reincarcare" to="Reincarcare" method="_on_pressed"]
-[connection signal="text_submitted" from="Lat" to="." method="_on_lat_text_submitted"]
-[connection signal="text_submitted" from="Lon" to="." method="_on_lon_text_submitted"]
+[connection signal="pressed" from="Node2D/Reincarcare" to="Node2D/Reincarcare" method="_on_pressed"]
+[connection signal="text_submitted" from="Node2D/Lat" to="Node2D" method="_on_lat_text_submitted"]
+[connection signal="text_submitted" from="Node2D/Lon" to="Node2D" method="_on_lon_text_submitted"]

@@ -3,11 +3,18 @@ extends Node2D
 var meteo
 var cod
 var vreme
-#Implicit va arata vremea in judetul Bacau
+#Implicit se va initializa cu coordonatele judetului Bacau
 var long="26.916025"
 var lat="46.568825"
 var url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
-#Rulare cand programul este incarcat
+
+func _ready():
+	#Rulare cand programul este incarcat
+	cerere()
+	await $Network/HTTPRequest.request_completed
+	codul_vremii()
+	fundal()
+
 func cerere():
 	#Cerere HTTP catre Open Meteo pentru a obtine prognoza meteo
 	#Descarca datele in variabila meteo
@@ -15,17 +22,11 @@ func cerere():
 	$Network/HTTPRequest.request(url)
 	await $Network/HTTPRequest.request_completed
 
-func _ready():
-	cerere()
-	await $Network/HTTPRequest.request_completed
-	codul_vremii()
-	fundal()
-#Verifica daca este zi sau noapte
-#Schimba fundalul si culoarea textului in functie de codul vremii si ora
 func fundal():
+	#Verifica daca este zi sau noapte
+	#Schimba fundalul si culoarea textului in functie de codul vremii si ora
 	if(meteo["current_weather"]["is_day"]==1):
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
-		$Text/Bacau.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(0,0,0))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/darkrefresh.png")
 		match (vreme):
@@ -43,7 +44,6 @@ func fundal():
 		$Reincarcare.show()
 	else:
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(255,255,255))
-		$Text/Bacau.set("theme_override_colors/font_color",Color(255,255,255))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(255,255,255))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/lightrefresh.png")
 		match (vreme):
@@ -91,7 +91,7 @@ func codul_vremii():
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
 
-#Schimbare locatie pentru care sa afiseze vremea curenta
+#Schimbare locatie pentru care sa afiseze vremea curenta pentru locatia respectiva
 func _on_lat_text_submitted(_test):
 	lat=$Lat.text
 	url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
@@ -100,11 +100,9 @@ func _on_lat_text_submitted(_test):
 	codul_vremii()
 	fundal()
 
-#Schimbare coordonate
 func _on_lon_text_submitted(_test):
 	long=$Lon.text
 	url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
-	
 	cerere()
 	await $Network/HTTPRequest.request_completed
 	codul_vremii()
