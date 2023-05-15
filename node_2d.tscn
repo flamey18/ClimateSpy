@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://w6h1q2v62e0n"]
+[gd_scene load_steps=5 format=3 uid="uid://w6h1q2v62e0n"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_m3nui"]
+[ext_resource type="Script" path="res://Reincarcare.gd" id="3_6jd54"]
 [ext_resource type="Texture2D" uid="uid://dt3lywx1qpv2e" path="res://Images/darkrefresh.png" id="14_1vtfb"]
 
 [sub_resource type="GDScript" id="GDScript_xqmds"]
@@ -78,5 +79,6 @@ icon = ExtResource("14_1vtfb")
 flat = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("3_6jd54")
 
-[connection signal="pressed" from="Reincarcare" to="." method="_on_reincarcare_pressed"]
+[connection signal="pressed" from="Reincarcare" to="Reincarcare" method="_on_pressed"]
