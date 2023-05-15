@@ -1,30 +1,38 @@
 extends Node2D
-#Initializarea valorilor
+#Initializarea variabilelor
 var meteo
 var cod
-var des
 var vreme
+var long="26.916025"
+var lat="46.568825"
+var url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+long+"&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto"
+#Rulare cand programul este incarcat
 func _ready():
+	#Cerere HTTP catre Open Meteo pentru a obtine prognoza meteo
 	$Network/HTTPRequest.request_completed.connect(_on_request_completed)
-	$Network/HTTPRequest.request("https://api.open-meteo.com/v1/forecast?latitude=46.57&longitude=26.91&hourly=precipitation_probability,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min&current_weather=true&forecast_days=1&timezone=auto")
+	$Network/HTTPRequest.request(url)
 	await $Network/HTTPRequest.request_completed
 	codul_vremii()
+	#Verifica daca este zi sau noapte
+	#Schimba fundalul si culoarea textului in functie de codul vremii si ora
 	if(meteo["current_weather"]["is_day"]==1):
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Bacau.set("theme_override_colors/font_color",Color(0,0,0))
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(0,0,0))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/darkrefresh.png")
 		match (vreme):
+			#Zi
 			0:
-				$Day/Clear.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Day.png")
+				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Sunny.png")
 			1:
-				$Day/Cloudy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Cloudy_Day.png")
 			2:
-				$Day/Rainy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Rainy_Day.png")
 			3:
-				$Day/Snowy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Snowy_Day.png")
 			4:
-				$Day/Thunderstorm.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Stormy_Day.png")
 		$Reincarcare.show()
 	else:
 		$Text/StareaVremii.set("theme_override_colors/font_color",Color(255,255,255))
@@ -32,16 +40,18 @@ func _ready():
 		$Text/Temperatura.set("theme_override_colors/font_color",Color(255,255,255))
 		$Reincarcare.icon=ResourceLoader.load("res://Images/lightrefresh.png")
 		match (vreme):
+			#Noapte
 			0:
-				$Night/Clear.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Decent_Night.png")
+				$Afisare/luminaSAUintuneric.texture=ResourceLoader.load("res://Images/Moon.png")
 			1:
-				$Night/Cloudy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Cloudy_Night.png")
 			2:
-				$Night/Rainy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Rainy_Night.png")
 			3:
-				$Night/Snowy.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Snowy_Night.png")
 			4:
-				$Night/Thunderstorm.show()
+				$Afisare/Fundal.texture=ResourceLoader.load("res://Images/Stormy_Night.png")
 		$Reincarcare.show()
 	$Text/Temperatura.text=str(meteo["current_weather"]["temperature"])+"°C"
 
@@ -49,6 +59,7 @@ func _on_request_completed(result, response_code, headers, body):
 	meteo = JSON.parse_string(body.get_string_from_utf8())
 
 func codul_vremii():
+	#Procesare cod vreme
 	if(meteo):
 		cod=int(meteo["current_weather"]["weathercode"])
 		match (cod):
@@ -73,6 +84,3 @@ func codul_vremii():
 			95,96,97:
 				$Text/StareaVremii.text="Furtuna"
 				vreme=4
-
-func _on_reincarcare_pressed():
-	get_tree().reload_current_scene()
